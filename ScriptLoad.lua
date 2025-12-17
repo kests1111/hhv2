@@ -14,31 +14,31 @@ plr = Players.LocalPlayer
 
 local isSupport = nil
 local GameList = {
-	[994732206] = "BloxFruit", -- Blox Fruit
-	[7018190066] = "DeadRails", -- Dead Rails
-	[383310974] = "AdoptMe", -- Adopt Me
-	[4777817887] = "BladeBall", -- Blade Ball
-	[5477548919] = "HonkaiStarRail", -- Honkai Star Rail Simulator
-	[5750914919] = "Fisch", -- Fisch
-	[3359505957] = "CollectAllPets", -- Collect All Pets
-	[6167925365] = "CongDongVietNam", -- Cong Dong Viet Nam
-	[5361032378] = "SolsRNG", -- Sol's RNG
-	[7709344486] = "StealBrainrot", -- Steal a Brainrot
-	[7326934954] = "99Nights", -- 99 Nights in the Forest
-	[3149100453] = "EatBlob", -- Eat Blob Simulator
-	[5995470825] = "Hypershot", -- Hypershot
-	[358276974] = "ApocalypseRising2", -- Apocalypse Rising 2
-	[7541395924] = "BuildIsland", -- Build An Island
-	[6701277882] = "FishIt", -- Fish It
-	[953622098] = "WordBomb", -- Word Bomb
-	[7200297228] = "LootHero", -- Loot Hero
-	[7832036655] = "ArenaOfBlox", -- Arena Of Blox
-	[7061783500] = "2PlayerBattleTycoon", -- 2 Player Battle Tycoon
+	[994732206] = true, -- Blox Fruit
+	[7018190066] = true, -- Dead Rails
+	[383310974] = true, -- Adopt Me
+	[4777817887] = true, -- Blade Ball
+	[5477548919] = true, -- Honkai Star Rail Simulator
+	[5750914919] = true, -- Fisch
+	[3359505957] = true, -- Collect All Pets
+	[6167925365] = true, -- Cong Dong Viet Nam
+	[5361032378] = true, -- Sol's RNG
+	[7709344486] = true, -- Steal a Brainrot
+	[7326934954] = true, -- 99 Nights in the Forest
+	[3149100453] = true, -- Eat Blob Simulator
+	[5995470825] = true, -- Hypershot
+	[358276974] = true, -- Apocalypse Rising 2
+	[7541395924] = true, -- Build An Island
+	[6701277882] = true, -- Fish It
+	[953622098] = true, -- Word Bomb
+	[7200297228] = true, -- Loot Hero
+	[7832036655] = true, -- Arena Of Blox
+	[7061783500] = true, -- 2 Player Battle Tycoon
 }
 
-for id, scriptName in pairs(GameList) do
+for id, supported in pairs(GameList) do
 	if id == GameId then
-		isSupport = scriptName
+		isSupport = supported
 	end
 end
 
@@ -695,159 +695,4 @@ do
 		local gradient = v.Gradient
 		local stroke = v.UIStroke
 
-		local tween_1_in = TweenService:Create(gradient,INFO_DOT25_QUAD,{BackgroundTransparency = 0})
-		local tween_2_in = TweenService:Create(stroke.UIGradient,INFO_DOT25_QUAD,{Offset = Vector2.new(0,-.5)})
-
-		local tween_1_out = TweenService:Create(gradient,INFO_DOT25_QUAD,{BackgroundTransparency = 1})
-		local tween_2_out = TweenService:Create(stroke.UIGradient,INFO_DOT25_QUAD,{Offset = Vector2.new(0,0)})
-
-		textbox.Focused:Connect((function()
-			tween_1_in:Play()
-			tween_2_in:Play()
-		end))
-
-		textbox.FocusLost:Connect((function()
-			tween_1_out:Play()
-			tween_2_out:Play()
-		end))
-	end
-
-	EnterKey(Frame)
-
-	for i,v in pairs({Get,Submit,Close,Support}) do
-		if isNotLocked(v) then
-			if v == Get or v == Submit then
-				v.MouseEnter:Connect((function()
-					TweenService:Create(v.Hover,INFO_DOT25_QUAD,{ImageTransparency = .25}):Play()
-				end))
-				v.MouseLeave:Connect((function()
-					TweenService:Create(v.Hover,INFO_DOT25_QUAD,{ImageTransparency = 1}):Play()
-				end))
-			else
-				v.MouseEnter:Connect((function()
-					TweenService:Create(v,INFO_DOT25_QUAD,{BackgroundTransparency = .1}):Play()
-					TweenService:Create(v["Title"],INFO_DOT25_QUAD,{TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
-				end))
-				v.MouseLeave:Connect((function()
-					TweenService:Create(v,INFO_DOT25_QUAD,{BackgroundTransparency = 1}):Play()
-					TweenService:Create(v["Title"],INFO_DOT25_QUAD,{TextColor3 = Color3.fromRGB(248, 4, 46)}):Play()
-				end))
-			end
-		end
-	end
-
-    if (isfile("HoHo_Intro.txt") and (tick() - tonumber(readfile("HoHo_Intro.txt"))) >= 86400) or not isfile("HoHo_Intro.txt") then
-        writefile("HoHo_Intro.txt", tostring(tick())) 
-        
-        local preload_content = {}
-        for i,v in pairs(HOHO_Passcheck:GetDescendants()) do
-            table.insert(preload_content,v)
-        end
-        for i,v in pairs(PreloadID) do
-            table.insert(preload_content,v)
-        end
-    
-        ContentProvider:PreloadAsync(preload_content)
-    
-        Content.Size = UDim2.new(0,0,1,0)
-    
-        TweenService:Create(INTRO,INFO_DOT25_QUAD,{GroupTransparency = 0}):Play()
-        task.wait(.5)
-        for i = 1, #preload_content do
-            local asset = preload_content[i]
-            local progress = i / #preload_content
-            TweenService:Create(Content,TweenInfo.new(.1,Enum.EasingStyle.Quad),{Size = UDim2.new(progress,0,1,0)}):Play()
-            task.wait(math.random(1,5)/50)
-        end
-    
-        TweenService:Create(INTRO,INFO_DOT25_QUAD,{GroupTransparency = 1}):Play()
-
-        task.wait(.5)
-        task.spawn(request, {
-            Url = 'http://127.0.0.1:6463/rpc?v=1',
-            Method = 'POST',
-            Headers = {
-                ['Content-Type'] = 'application/json',
-                ['origin'] = 'https://ptb.discord.com',
-            },
-            Body = HttpService:JSONEncode({
-                ['args'] = {
-                ['code'] = 'hohohub',
-                ['sex'] = '?species=Goblin&realm=Toril'
-            },
-            ['cmd'] = 'INVITE_BROWSER',
-            ['nonce'] = 'OwO'
-        })})
-    end
-
-	GET_KEY.Visible = true
-	TweenService:Create(GET_KEY,INFO_DOT25_QUAD,{GroupTransparency = 0}):Play()
-
-	local destroyUI = function()
-		HOHO_Passcheck:Destroy()
-		HOHO_Gen4:Destroy()
-	end
-
-	local load_script = function()
-		TweenService:Create(GET_KEY,INFO_DOT25_QUAD,{GroupTransparency = 1}):Play()
-		delay(0.2, destroyUI)
-		wait(.25)
-		
-		local scriptUrl = "https://raw.githubusercontent.com/kests1111/hhv2/main/Games/" .. isSupport .. ".lua"
-		
-		StarterGui:SetCore("SendNotification",{
-			Title = "HoHo Hub",
-			Text = "Loading script...",
-			Icon = "rbxassetid://16276677105"
-		})
-		
-		local success, errorMsg = pcall(function()
-			loadstring(game:HttpGet(scriptUrl))()
-		end)
-		
-		if not success then
-			StarterGui:SetCore("SendNotification",{
-				Title = "HoHo Hub Error",
-				Text = "Failed to load script: " .. tostring(errorMsg),
-				Icon = "rbxassetid://16276677105",
-				Duration = 10
-			})
-		end
-	end
-	
-    Support.MouseButton1Click:Once(function()
-        TeleportService:Teleport(16325746227)
-	end)
-
-	Close.MouseButton1Click:Once(function()
-		UI_LOCK = true
-		TweenService:Create(GET_KEY,INFO_DOT25_QUAD,{GroupTransparency = 1}):Play()
-		delay(0.2, destroyUI)
-		Result = nil
-	end)
-
-	Get.MouseButton1Click:Connect(function()
-		setclipboard('https://hehehub-acsu123.pythonanywhere.com/api/getkey?hwid=' .. tick())
-		StarterGui:SetCore("SendNotification",{
-			Title = "Key System",
-			Text = "Key Link 1 Copied!",
-			Icon = "rbxassetid://16276677105"
-		})
-	end)
-
-    Get2.MouseButton1Click:Connect(function()
-        setclipboard('https://hehehub-acsu123.pythonanywhere.com/api/getkey?hwid=TUTORIAL')
-        StarterGui:SetCore("SendNotification",{
-            Title = "Key System",
-            Text = "Get Key Tutorial Copied!",
-            Icon = "rbxassetid://16276677105"
-        })
-	end)
-	
-	Submit.MouseButton1Click:Connect(function()
-		load_script()
-	end)
-
-	task.wait(1)
-	load_script()
-end
+		local tween_1_in = TweenService
