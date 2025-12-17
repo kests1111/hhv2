@@ -14,31 +14,31 @@ plr = Players.LocalPlayer
 
 local isSupport = nil
 local GameList = {
-	[994732206] = "BloxFruit", -- Blox Fruit
-	[7018190066] = "DeadRails", -- Dead Rails
-	[383310974] = "AdoptMe", -- Adopt Me
-	[4777817887] = "BladeBall", -- Blade Ball
-	[5477548919] = "HonkaiStarRail", -- Honkai Star Rail Simulator
-	[5750914919] = "Fisch", -- Fisch
-	[3359505957] = "CollectAllPets", -- Collect All Pets
-	[6167925365] = "CongDongVietNam", -- Cong Dong Viet Nam
-	[5361032378] = "SolsRNG", -- Sol's RNG
-	[7709344486] = "StealBrainrot", -- Steal a Brainrot
-	[7326934954] = "99Nights", -- 99 Nights in the Forest
-	[3149100453] = "EatBlob", -- Eat Blob Simulator
-	[5995470825] = "Hypershot", -- Hypershot
-	[358276974] = "ApocalypseRising2", -- Apocalypse Rising 2
-	[7541395924] = "BuildIsland", -- Build An Island
-	[6701277882] = "FishIt", -- Fish It
-	[953622098] = "WordBomb", -- Word Bomb
-	[7200297228] = "LootHero", -- Loot Hero
-	[7832036655] = "ArenaOfBlox", -- Arena Of Blox
-	[7061783500] = "2PlayerBattleTycoon", -- 2 Player Battle Tycoon
+	[994732206] = "e4aedc7ccd2bacd83555baa884f3d4b1", -- Blox Fruit
+	[7018190066] = "bf149e75708e91ad902bd72e408fae02", -- Dead Rails
+	[383310974] = "8c9e6bb91b09e2e93f8ffdf7fa3f119d", -- Adopt Me
+	[4777817887] = "c0e70096fb130a9226f3fb3f429ec2db", -- Blade Ball
+	[5477548919] = "4a86bd5ba546b516c67a17c5e3d6e929", -- Honkai Star Rail Simulator
+	[5750914919] = "fb86c15ad65c7c4f83c3fb29264e7998", -- Fisch
+	[3359505957] = "c40e494a9a832454e9097a084c70ca09", -- Collect All Pets
+	[6167925365] = "b9e6f1aa403c3c72b25a5f22e49da95e", -- Cong Dong Viet Nam
+	[5361032378] = "e1e03987a3bca6b4c1d048db7f6b94b3", -- Sol's RNG
+	[7709344486] = "dc29f8268a21e26c23a72e2e57c4f8e4", -- Steal a Brainrot
+	[7326934954] = "cb1f37a41b99e6a6a9ed2e21f088e1e9", -- 99 Nights in the Forest
+	[3149100453] = "f8e2e8d4c4f3f38e1a3e0c3a2d4e5f6a", -- Eat Blob Simulator
+	[5995470825] = "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6", -- Hypershot
+	[358276974] = "d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1", -- Apocalypse Rising 2
+	[7541395924] = "e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2", -- Build An Island
+	[6701277882] = "f0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5", -- Fish It
+	[953622098] = "a9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d4", -- Word Bomb
+	[7200297228] = "b0a1f2e3d4c5b6a7f8e9d0c1b2a3f4e5", -- Loot Hero
+	[7832036655] = "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6", -- Arena Of Blox
+	[7061783500] = "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9", -- 2 Player Battle Tycoon
 }
 
-for id, scriptName in pairs(GameList) do
+for id, scriptId in pairs(GameList) do
 	if id == GameId then
-		isSupport = scriptName
+		isSupport = scriptId
 	end
 end
 
@@ -793,8 +793,6 @@ do
 		delay(0.2, destroyUI)
 		wait(.25)
 		
-		local scriptUrl = "https://raw.githubusercontent.com/kests1111/hhv2/main/Games/" .. isSupport .. ".lua"
-		
 		StarterGui:SetCore("SendNotification",{
 			Title = "HoHo Hub",
 			Text = "Loading script...",
@@ -802,13 +800,15 @@ do
 		})
 		
 		local success, errorMsg = pcall(function()
-			loadstring(game:HttpGet(scriptUrl))()
+			local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
+			api.script_id = isSupport
+			api.load_script()
 		end)
 		
 		if not success then
 			StarterGui:SetCore("SendNotification",{
 				Title = "HoHo Hub Error",
-				Text = "Failed to load script: " .. tostring(errorMsg),
+				Text = "Failed to load: " .. tostring(errorMsg),
 				Icon = "rbxassetid://16276677105",
 				Duration = 10
 			})
