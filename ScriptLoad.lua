@@ -783,9 +783,6 @@ do
 	GET_KEY.Visible = true
 	TweenService:Create(GET_KEY,INFO_DOT25_QUAD,{GroupTransparency = 0}):Play()
 
-	local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
-	api.script_id = isSupport
-
 	local destroyUI = function()
 		HOHO_Passcheck:Destroy()
 		HOHO_Gen4:Destroy()
@@ -793,12 +790,29 @@ do
 
 	local load_script = function()
 		TweenService:Create(GET_KEY,INFO_DOT25_QUAD,{GroupTransparency = 1}):Play()
-
 		delay(0.2, destroyUI)
-
 		wait(.25)
 		
-		api.load_script()
+		local scriptUrl = "https://raw.githubusercontent.com/kests1111/hhv2/main/Games/" .. isSupport .. ".lua"
+		
+		StarterGui:SetCore("SendNotification",{
+			Title = "HoHo Hub",
+			Text = "Loading script...",
+			Icon = "rbxassetid://16276677105"
+		})
+		
+		local success, errorMsg = pcall(function()
+			loadstring(game:HttpGet(scriptUrl))()
+		end)
+		
+		if not success then
+			StarterGui:SetCore("SendNotification",{
+				Title = "HoHo Hub Error",
+				Text = "Failed to load script: " .. tostring(errorMsg),
+				Icon = "rbxassetid://16276677105",
+				Duration = 10
+			})
+		end
 	end
 	
     Support.MouseButton1Click:Once(function()
@@ -808,9 +822,7 @@ do
 	Close.MouseButton1Click:Once(function()
 		UI_LOCK = true
 		TweenService:Create(GET_KEY,INFO_DOT25_QUAD,{GroupTransparency = 1}):Play()
-
 		delay(0.2, destroyUI)
-
 		Result = nil
 	end)
 
