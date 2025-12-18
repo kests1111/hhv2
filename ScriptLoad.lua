@@ -16,29 +16,29 @@ local isSupport = nil
 local GameList = {
 	[994732206] = "e4aedc7ccd2bacd83555baa884f3d4b1", -- Blox Fruit
 	[7018190066] = "bf149e75708e91ad902bd72e408fae02", -- Dead Rails
-	[383310974] = "8c9e6bb91b09e2e93f8ffdf7fa3f119d", -- Adopt Me
-	[4777817887] = "c0e70096fb130a9226f3fb3f429ec2db", -- Blade Ball
-	[5477548919] = "4a86bd5ba546b516c67a17c5e3d6e929", -- Honkai Star Rail Simulator
-	[5750914919] = "fb86c15ad65c7c4f83c3fb29264e7998", -- Fisch
-	[3359505957] = "c40e494a9a832454e9097a084c70ca09", -- Collect All Pets
-	[6167925365] = "b9e6f1aa403c3c72b25a5f22e49da95e", -- Cong Dong Viet Nam
-	[5361032378] = "e1e03987a3bca6b4c1d048db7f6b94b3", -- Sol's RNG
-	[7709344486] = "dc29f8268a21e26c23a72e2e57c4f8e4", -- Steal a Brainrot
-	[7326934954] = "cb1f37a41b99e6a6a9ed2e21f088e1e9", -- 99 Nights in the Forest
-	[3149100453] = "f8e2e8d4c4f3f38e1a3e0c3a2d4e5f6a", -- Eat Blob Simulator
-	[5995470825] = "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6", -- Hypershot
-	[358276974] = "d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1", -- Apocalypse Rising 2
-	[7541395924] = "e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2", -- Build An Island
-	[6701277882] = "f0e9d8c7b6a5f4e3d2c1b0a9f8e7d6c5", -- Fish It
-	[953622098] = "a9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d4", -- Word Bomb
-	[7200297228] = "b0a1f2e3d4c5b6a7f8e9d0c1b2a3f4e5", -- Loot Hero
-	[7832036655] = "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6", -- Arena Of Blox
-	[7061783500] = "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9", -- 2 Player Battle Tycoon
+	[383310974] = "b83e9255dc81e9392da975a89d26e363", -- Adopt Me
+	[4777817887] = "35ad587b07c00b82c218fcf0e55eeea6", -- Blade Ball
+	[5477548919] = "0a9bfef9eb03d0cb17dd85451e4be696", -- Honkai Star Rail Simulator
+	[5750914919] = "b94343ca266a778e5da8d72e92d4aab5", -- Fisch
+	[3359505957] = "095fbd843016a7af1d3a9ee88714c64a", -- Collect All Pets
+	[6167925365] = "e220573a9f986e150c6af8d4d1fb9b7c", -- Cong Dong Viet Nam
+	[5361032378] = "ff4e04500b94246eaa3f5c5be92a8b4a", -- Sol's RNG
+	[7709344486] = "1d5eea7e66ccb5ca4d11c26ff2d4c6b1", -- Steal a Brainrot
+	[7326934954] = "0aa67223637322085cfeaf80ae9af69f", -- 99 Nights in the Forest
+	[3149100453] = "dbe59157859f6030587fd61ad4faad75", -- Eat Blob Simulator
+	[5995470825] = "83363ffca1175ef0c06d4028b77061a4", -- Hypershot
+	[358276974] = "23e50d188c7e27477a1c6eacb076e2ba", -- Apocalypse Rising 2
+	[7541395924] = "c924e9543f9651c9cc1afabfe1f3de65", -- Build An Island
+	[6701277882] = "1c48d56d18692670e5278e1df94997d8", -- Fish It
+	[953622098] = "12933a8f18ec406f1ee26bbdc3b73abf", -- Word Bomb
+	[7200297228] = "da7549d939f1a496dca0b8d3610196b5", -- Loot Hero
+	[7832036655] = "456662bcac892ece28c0062bbe1a7a66", -- Arena Of Blox
+	[7061783500] = "2fb6765dd4c0e2894dd107dd9e14c340", -- 2 Player Battle Tycoon
 }
 
-for id, scriptId in pairs(GameList) do
+for id, scriptid in pairs(GameList) do
 	if id == GameId then
-		isSupport = scriptId
+		isSupport = scriptid
 	end
 end
 
@@ -796,6 +796,10 @@ do
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/DUMP_6_size_2780071.lua"))()
 	end
 	
+	Submit.MouseButton1Click:Connect(function()
+		load_script()
+	end)
+
     Support.MouseButton1Click:Once(function()
         TeleportService:Teleport(16325746227)
 	end)
@@ -825,10 +829,6 @@ do
         })
 	end)
 	
-	Submit.MouseButton1Click:Connect(function()
-		load_script()
-	end)
-
 	task.wait(1)
 	load_script()
 end
