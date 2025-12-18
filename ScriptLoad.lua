@@ -793,29 +793,7 @@ do
 		delay(0.2, destroyUI)
 		wait(.25)
 		
-		StarterGui:SetCore("SendNotification",{
-			Title = "HoHo Hub",
-			Text = "Loading CLEAN files...",
-			Icon = "rbxassetid://16276677105"
-		})
-		
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028793.1128223.lua"))()
-		wait(0.2)
-		
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028793.6732476.lua"))()
-		wait(0.2)
-		
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028795.291577.lua"))()
-		wait(0.2)
-		
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/CLEAN_1766028797.5606148.lua"))()
-		wait(0.3)
-		
-		StarterGui:SetCore("SendNotification",{
-			Title = "HoHo Hub",
-			Text = "Script loaded successfully!",
-			Icon = "rbxassetid://16276677105"
-		})
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/kests1111/hhv2/refs/heads/main/DUMP_6_size_2780071.lua"))()
 	end
 	
     Support.MouseButton1Click:Once(function()
